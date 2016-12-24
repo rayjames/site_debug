@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * A module that displays debugging data to a file.
+ */
+
+/**
+ * site debug to file
+ */
+function sdb($data = array()) {
+  $file = drupal_get_path('module', 'site_debug') . '/debug.txt';
+  $fh = fopen($file, 'a');
+  
+  $stringData = '';
+  
+  if (is_array($data)) {
+    $stringData .= print_r($data, true);
+  }
+  
+  if (is_object($data)) {
+    $stringData .= print_r($data, true);
+  }
+  
+  if (is_array($data) != 1 && is_object($data) != 1) {
+    $stringData .= $data;
+  }
+  
+  $stringData .= "\n\n--------------------------------\n\n";
+  
+  fwrite($fh, $stringData);
+  fclose($fh);
+}

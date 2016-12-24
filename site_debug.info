@@ -1,0 +1,4 @@
+name = Site Debug
+description = Adds debugging to a file.
+package = Development
+core = 7.x
